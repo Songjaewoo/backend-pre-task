@@ -1,9 +1,9 @@
 CREATE SCHEMA `contact_db` DEFAULT CHARACTER SET utf8mb4 ;
 
 CREATE TABLE `contact` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `profile_image_url` varchar(255) NOT NULL DEFAULT '',
+  `id` integer PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
+  `profile_image_url` varchar(255) NOT NULL DEFAULT '',
   `email` varchar(255) NOT NULL DEFAULT '',
   `phone` varchar(30) NOT NULL DEFAULT '',
   `company` varchar(100) NOT NULL DEFAULT '',
@@ -11,17 +11,22 @@ CREATE TABLE `contact` (
   `memo` longtext DEFAULT NULL,
   `address` varchar(255) NOT NULL DEFAULT '',
   `birthday` date DEFAULT NULL,
-  `website` varchar(200) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
+  `website` varchar(255) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `label_map` (
+  `id` integer PRIMARY KEY AUTO_INCREMENT,
+  `contact_id` integer NOT NULL,
+  `label_id` integer NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `label` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) NOT NULL,
-  `contact_id` bigint NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `label_contact_id_fk_contact_id` (`contact_id`),
-  CONSTRAINT `label_contact_id_fk_contact_id` FOREIGN KEY (`contact_id`) REFERENCES `contact` (`id`)
+  `id` integer PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `label_map` ADD FOREIGN KEY (`contact_id`) REFERENCES `contact` (`id`);
+ALTER TABLE `label_map` ADD FOREIGN KEY (`label_id`) REFERENCES `label` (`id`);
+
 
 

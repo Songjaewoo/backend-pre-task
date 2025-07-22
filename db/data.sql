@@ -1,4 +1,4 @@
-INSERT INTO `contact` (`profile_image_url`, `name`, `email`, `phone`, `company`, `job_title`, `memo`, `address`, `birthday`, `website`)
+INSERT INTO `contact_db`.`contact` (`profile_image_url`, `name`, `email`, `phone`, `company`, `job_title`, `memo`, `address`, `birthday`, `website`)
 VALUES
 ('https://example.com/images/hong.jpg', '홍길동', 'hong@example.com', '01012345678', 'ABC Corp', '개발자', '팀원들과 잘 어울림', '서울시 강남구 테헤란로 123', '1990-01-15', 'https://hong.dev'),
 ('', '김무개', 'kim@example.com', '01098765432', 'XYZ Inc', '기획자', NULL, '부산시 해운대구 센텀중앙로 456', NULL, ''),
@@ -10,3 +10,16 @@ VALUES
 ('', '김연아', 'yuna@ice.com', '01066667777', '대한빙상연맹', '피겨선수', '은퇴 후 활동 중', '경기도 군포시 산본로 55', '1990-09-05', ''),
 ('', '손흥민', 'son@tottenham.com', '01077778888', '토트넘', '축구선수', '잉글리시 프리미어리거', '영국 런던', '1992-07-08', 'https://son7.com'),
 ('', '배수지', 'suzy@idol.com', '01088889999', 'JYP', '가수/배우', '', '서울 용산구 이태원로 77', '1994-10-10', 'https://suzy.kr');
+
+
+INSERT INTO `contact_db`.`label` (`name`) VALUES ('중학교');
+INSERT INTO `contact_db`.`label` (`name`) VALUES ('고등학교');
+INSERT INTO `contact_db`.`label` (`name`) VALUES ('대학교');
+INSERT INTO `contact_db`.`label` (`name`) VALUES ('회사');
+
+INSERT INTO `contact_db`.`label_map` (`contact_id`, `label_id`) VALUES ('1', '1');
+INSERT INTO `contact_db`.`label_map` (`contact_id`, `label_id`) VALUES ('1', '2');
+INSERT INTO `contact_db`.`label_map` (`contact_id`, `label_id`) VALUES ('1', '3');
+INSERT INTO `contact_db`.`label_map` (`contact_id`, `label_id`) VALUES ('2', '4');
+INSERT INTO `contact_db`.`label_map` (`contact_id`, `label_id`) VALUES ('3', '4');
+INSERT INTO `contact_db`.`label_map` (`contact_id`, `label_id`) VALUES ('4', '4');

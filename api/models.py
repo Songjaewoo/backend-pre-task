@@ -12,22 +12,23 @@ class Contact(models.Model):
     address = models.CharField(max_length=255, blank=True, default='')
     birthday = models.DateField(blank=True, null=True)
     website = models.URLField(blank=True, default='')
+    labels = models.ManyToManyField('Label', through='LabelMap', related_name='contacts')
 
     class Meta:
         db_table = 'contact'
 
-    def __str__(self):
-        return self.name
-
 
 class Label(models.Model):
     name = models.CharField(max_length=200, blank=False, null=False)
-    contact = models.ForeignKey(Contact, on_delete=models.CASCADE, related_name='labels')
 
     class Meta:
         db_table = 'label'
 
-    def __str__(self):
-        return self.name
 
+class LabelMap(models.Model):
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    label = models.ForeignKey(Label, on_delete=models.CASCADE)
 
+    class Meta:
+        db_table = 'label_map'
+        unique_together = ('contact', 'label')
