@@ -84,6 +84,45 @@ DATABASES = {
     }
 }
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+    'formatters': { # 로그 메시지 형식 정의
+        'sql_formatter': { # 쿼리 전용 포맷터
+            'format': '[SQL] {levelname} {asctime} {duration:.2f}ms {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'sql_console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'sql_formatter',
+        },
+    },
+    'loggers': { # 특정 로거에 대한 설정 정의
+        'django.db.backends': {
+            'handlers': ['sql_console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        '': { # 기본(root) 로거 설정
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
+        }
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
