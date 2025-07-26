@@ -5,7 +5,9 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.exceptions import ParseError, NotFound, ValidationError
 from .serializers import ContactListSerializer, LabelSerializer, LabelMapSerializer, ContactDetailSerializer
 from .models import Contact, LabelMap, Label
+import logging
 
+logger = logging.getLogger(__name__)
 
 class ContactPagination(PageNumberPagination):
     page_size = 10
@@ -39,7 +41,7 @@ class ContactListView(APIView):
         except NotFound as e:
             return Response({'message': '페이지를 찾을 수 없습니다'}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
-            print(e)
+            logger.error(e)
             return Response({'message': '예상치 못한 서버 오류'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def post(self, request):
@@ -55,7 +57,7 @@ class ContactListView(APIView):
         except ParseError as e:
             return Response({"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
-            print(e)
+            logger.error(e)
             return Response({'message': '예상치 못한 서버 오류'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
@@ -69,7 +71,7 @@ class ContactDetailView(APIView):
         except Contact.DoesNotExist:
             return Response({"message": "존재하지 않는 id 입니다"}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
-            print(e)
+            logger.error(e)
             return Response({'message': '예상치 못한 서버 오류'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def put(self, request, id):
@@ -88,5 +90,5 @@ class ContactDetailView(APIView):
         except Contact.DoesNotExist:
             return Response({"message": "존재하지 않는 id 입니다"}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
-            print(e)
+            logger.error(e)
             return Response({"message": e}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -12,14 +12,15 @@ VALUES
 ('', '배수지', 'suzy@idol.com', '01088889999', 'JYP', '가수/배우', '', '서울 용산구 이태원로 77', '1994-10-10', 'https://suzy.kr');
 
 
-INSERT INTO `contact_db`.`label` (`name`) VALUES ('중학교');
-INSERT INTO `contact_db`.`label` (`name`) VALUES ('고등학교');
-INSERT INTO `contact_db`.`label` (`name`) VALUES ('대학교');
-INSERT INTO `contact_db`.`label` (`name`) VALUES ('회사');
+INSERT INTO `contact_db`.`label` (`name`)
+VALUES ('친구'), ('가족'), ('회사');
 
-INSERT INTO `contact_db`.`label_map` (`contact_id`, `label_id`) VALUES ('1', '1');
-INSERT INTO `contact_db`.`label_map` (`contact_id`, `label_id`) VALUES ('1', '2');
-INSERT INTO `contact_db`.`label_map` (`contact_id`, `label_id`) VALUES ('1', '3');
-INSERT INTO `contact_db`.`label_map` (`contact_id`, `label_id`) VALUES ('2', '4');
-INSERT INTO `contact_db`.`label_map` (`contact_id`, `label_id`) VALUES ('3', '4');
-INSERT INTO `contact_db`.`label_map` (`contact_id`, `label_id`) VALUES ('4', '4');
+
+INSERT INTO `contact_db`.`label_map` (`contact_id`, `label_id`)
+VALUES
+('1', '1'),
+('1', '2'),
+('1', '3'),
+('2', '1'),
+('3', '1'),
+('4', '1');

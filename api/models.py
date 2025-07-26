@@ -17,6 +17,8 @@ class Contact(models.Model):
     class Meta:
         db_table = 'contact'
 
+    def __str__(self):
+        return self.name
 
 class Label(models.Model):
     name = models.CharField(max_length=200, blank=False, null=False)
@@ -24,6 +26,8 @@ class Label(models.Model):
     class Meta:
         db_table = 'label'
 
+    def __str__(self):
+        return self.name
 
 class LabelMap(models.Model):
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
@@ -32,3 +36,8 @@ class LabelMap(models.Model):
     class Meta:
         db_table = 'label_map'
         unique_together = ('contact', 'label')
+
+    def __str__(self):
+        return f'{self.contact.name} - {self.label.name}'
+
+

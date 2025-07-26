@@ -90,7 +90,7 @@ LOGGING = {
 
     'formatters': { # 로그 메시지 형식 정의
         'sql_formatter': { # 쿼리 전용 포맷터
-            'format': '[SQL] {levelname} {asctime} {duration:.2f}ms {message}',
+            'format': '[SQL] {levelname} {asctime} {message}',
             'style': '{',
         },
         'simple': {
@@ -113,7 +113,7 @@ LOGGING = {
     'loggers': { # 특정 로거에 대한 설정 정의
         'django.db.backends': {
             'handlers': ['sql_console'],
-            'level': 'DEBUG',
+            'level': 'ERROR',
             'propagate': False,
         },
         '': { # 기본(root) 로거 설정
@@ -164,3 +164,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer'
+    ],
+}
