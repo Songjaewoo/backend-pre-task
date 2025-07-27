@@ -16,7 +16,7 @@
 - Python 3.10
 - Django 4.2
 - Django REST Framework 3.16.0
-- MySQL
+- MySQL 8.4
 - drf-spectacular
 
 ## API 엔드포인트
@@ -145,3 +145,11 @@ PUT /api/contacts/{id}/
 
 Swagger UI는 `/api/schema/swagger-ui/` 경로에서 확인할 수 있습니다.
 
+## 프로젝트 실행 방법
+### 1. Docker 컨테이너 실행
+```
+1. docker compose up
+
+2. localhost:8000/api/schema/swagger-ui/ 확인
+
+도커 실행시 01_schema.sql, 02_data.sql 자동으로 실행됩니다.
